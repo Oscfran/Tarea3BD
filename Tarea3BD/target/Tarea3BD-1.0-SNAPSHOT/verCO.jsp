@@ -1,6 +1,6 @@
 <%-- 
-    Document   : verBene
-    Created on : 15 nov 2021, 16:18:40
+    Document   : verCO
+    Created on : 15 nov 2021, 16:18:05
     Author     : oscfr
 --%>
 
@@ -9,21 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Info. Beneficiarios</title>
+        <title>Info. Cuentas Objetivo</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-
-         <h1 id="titulo" >Lista Beneficiarios</h1>
+         <h1 id="titulo" >Lista Cuentas Objetivo</h1>
         <table class="styled-table">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Cédula</th>
-                    <th>Monto total</th>
-                    <th>Num Cuenta Mayor ingreso</th>
-                    <th>Cantidad cuentas</th>
+                    <th>Codigpo de cuenta</th>
+                    <th>ID CO</th>
+                    <th>Descripción</th>
+                    <th>Retiros Realizados</th>
+                    <th>Retiros Hipotpéticos</th>
+                    <th>Debito Real</th>
+                    <th>Debito Hipotetico</th>
                 </tr>
+
             </thead>
             <tbody>
                 <tr>
@@ -32,11 +34,13 @@
                     <td>Prueba</td>
                     <td>Prueba</td>
                     <td>Prueba</td>
-                </tr> 
+                    <td>Prueba</td>
+                    <td>Prueba</td>
+                </tr>
             </tbody>
         </table>
         <%
-            out.println("<p>Se consultó la lista beneficiarios <a href='index.html'>Salir</a></p>");
+            out.println("<p>Se consultó la cuenta <a href='index.html'>Salir</a></p>");
         %>
     </body>
 </html>

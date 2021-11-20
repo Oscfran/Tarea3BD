@@ -7,19 +7,27 @@
     </head>
     <body>
         <h1 id="titulo" >Menu Principal</h1>
+        
 
-        <form action ="verCO.jsp"/>
+        <div>
+            <form action ="verCO.jsp"/>
             <input class= "boton" type="submit" value="Ver Cuentas Objetivo">
-        </form>
+            </form>
+        </div>
         &nbsp
         &nbsp
-        <form action ="verATM.jsp"/>
-            <input class= "boton" type="submit" value="Ver ATM">
-        </form>
+        <div class="div1">
+            <form action ="verATM.jsp"/>
+                <p>Cantidad de Días: <input type="number" name="numero" required/></p> 
+                <input class= "boton" type="submit" value="Ver ATM">
+            </form>
+        </div>
         &nbsp
         &nbsp
-        <form action ="verBene.jsp"/>
-            <input class= "boton" type="submit" value="Ver Beneficiarios">
-        </form>
+        <div>
+            <form action ="verBene.jsp"/>
+                <input class= "boton" type="submit" value="Ver Beneficiarios">
+            </form>
+        </div>
     </body>
 </html>
