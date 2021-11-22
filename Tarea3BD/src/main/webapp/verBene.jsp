@@ -4,6 +4,9 @@
     Author     : oscfr
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="conexion.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,13 +29,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                </tr> 
+                <%
+                    String select = "EXEC SP_GananciaBeneficiarios ?";
+                    PreparedStatement sql = Conexion.getConexion().prepareStatement(select);
+                    sql.setInt(1, 0);
+
+                    ResultSet resultado = sql.executeQuery();
+
+                    while(resultado.next()){
+                        out.println("<tr>"+
+                            "<td>"+resultado.getString("Nombre")+"</td>"+
+                            "<td>"+resultado.getString("Cedula")+"</td>"+
+                            "<td>"+resultado.getInt("Dinero")+"</td>"+
+                            "<td>"+resultado.getString("NumCuenta")+"</td>"+
+                            "<td>"+resultado.getInt("CantCuentas")+"</td>"+
+                            "</tr>");
+                    }
+
+                %>
             </tbody>
         </table>
         <%

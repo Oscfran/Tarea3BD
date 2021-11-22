@@ -4,6 +4,9 @@
     Author     : oscfr
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="conexion.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,14 +28,24 @@
             </thead>
             <tbody>
                 <%
-                    String descripcion = request.getParameter("numero");
+                    int numero = Integer.parseInt(request.getParameter("numero"));
+                    
+                    String select = "EXEC SP_MultaATM ?, ?";
+                    PreparedStatement sql = Conexion.getConexion().prepareStatement(select);
+                    sql.setInt(1, numero);
+                    sql.setInt(2, 0);
+
+                    ResultSet resultado = sql.executeQuery();
+
+                    while(resultado.next()){
+                        out.println("<tr>"+
+                            "<td>"+resultado.getInt("cantPromedioOp")+"</td>"+
+                            "<td>"+resultado.getInt("Mes")+"</td>"+
+                            "<td>"+resultado.getInt("Año")+"</td>"+
+                            "<td>"+resultado.getString("NumCuenta")+"</td>"+
+                            "</tr>");
+                    }
                 %>
-                <tr>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                </tr>
             </tbody>
         </table>
         <%

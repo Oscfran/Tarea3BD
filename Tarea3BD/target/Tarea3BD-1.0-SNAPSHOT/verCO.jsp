@@ -4,6 +4,9 @@
     Author     : oscfr
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="conexion.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,26 +20,37 @@
         <table class="styled-table">
             <thead>
                 <tr>
-                    <th>Codigpo de cuenta</th>
+                    <th>Código de cuenta</th>
                     <th>ID CO</th>
                     <th>Descripción</th>
                     <th>Retiros Realizados</th>
-                    <th>Retiros Hipotpéticos</th>
-                    <th>Debito Real</th>
-                    <th>Debito Hipotetico</th>
+                    <th>Retiros Hipotéticos</th>
+                    <th>Débito Real</th>
+                    <th>Débito Hipotético</th>
                 </tr>
 
             </thead>
             <tbody>
-                <tr>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                    <td>Prueba</td>
-                </tr>
+                <%
+                    String select = "EXEC SP_COIncompletas ?";
+                    PreparedStatement sql = Conexion.getConexion().prepareStatement(select);
+                    sql.setInt(1, 0);
+
+                    ResultSet resultado = sql.executeQuery();
+
+                    while(resultado.next()){
+                        out.println("<tr>"+
+                            "<td>"+resultado.getString("NumCuenta")+"</td>"+
+                            "<td>"+resultado.getInt("IdCO")+"</td>"+
+                            "<td>"+resultado.getString("Descripcion")+"</td>"+
+                            "<td>"+resultado.getInt("CantRetirosRealizados")+"</td>"+
+                            "<td>"+resultado.getInt("CantRetirosHipoteticos")+"</td>"+
+                            "<td>"+resultado.getInt("MontoDebitadoReal")+"</td>"+
+                            "<td>"+resultado.getInt("MontoDebitadoHipotetico")+"</td>"+
+                            "</tr>");
+                    }
+
+                %>
             </tbody>
         </table>
         <%
